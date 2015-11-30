@@ -1,5 +1,6 @@
 package com.example.mich.masteringthefundamentals;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -8,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+
+import static android.app.AlertDialog.Builder;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,11 +21,16 @@ public class MainActivity extends AppCompatActivity {
 
         // connecting my buttons
         Button myButton = (Button) findViewById(R.id.button);
-
-        // connecting my textViews
+        Button myButton2 = (Button) findViewById(R.id.button2);
+        // connecting my textFields
         final TextView myText = (TextView) findViewById(R.id.editText);
+        final TextView mySearchText = (TextView) findViewById(R.id.editText2);
+
+        //connceting my textViews
         final TextView myDispaly = (TextView) findViewById(R.id.textView);
         final TextView myCount = (TextView) findViewById(R.id.countView);
+        final TextView myAverage = (TextView) findViewById(R.id.averageView);
+
 
         // declaring my arraylists for use in my function
         final ArrayList<String> myArrayList = new ArrayList<String>();
@@ -31,12 +39,12 @@ public class MainActivity extends AppCompatActivity {
         // help debugging
         final String LOG_Tag = "logcatExample";
 
-        // setting up my onclick listener along with the rest of my code
+        // setting up my onclick listener for my 1st button along with the rest of my code
         myButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String myTest = "You Tryed me, How was it?";
+                String myTest = "Enter another Value";
 
                 // gets data from the text entry
                 String myInput = String.valueOf(myText.getText());
@@ -68,6 +76,13 @@ public class MainActivity extends AppCompatActivity {
                     // number of entries
                     int size = myArrayList.size();
 
+                    //sets the hint for the search bar to the index of the list
+                    if (Integer.toString(size).equals("1")){
+                        mySearchText.setHint("Search");
+                    } else {
+                        mySearchText.setHint("search using a number between 0 and " + (size - 1));
+                    }
+
                     // number of charecters in eack entry
                     int charCount = myInput.length();
 
@@ -89,14 +104,67 @@ public class MainActivity extends AppCompatActivity {
                         // gets the average charecters
                         div = summed/size;
                         i++;
-                        // sets the textView to the average charecters 
-                        myCount.setText(Integer.toString(div));
+                        // sets the textView to the average charecters
+                        myAverage.setText(new StringBuilder().append("With an Average of ").append(Integer.toString(div)).append(" Charecters in each entry").toString());
                     }
 
 
-
-                   // myCount.setText(new StringBuilder().append("There are ").append(Integer.toString(size)).append(" item(s) in your list").toString());
+                    if (Integer.toString(size).equals("1")) {
+                        myCount.setText(new StringBuilder().append("There is ").append(Integer.toString(size)).append(" item in your list").toString());
+                    } else {
+                        myCount.setText(new StringBuilder().append("There are ").append(Integer.toString(size)).append(" items in your list").toString());
+                    }
                 }
+
+            }
+        });
+
+        myButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // gets the size of the list
+                // number of entries
+                int size = myArrayList.size();
+
+                String myInput2 = String.valueOf(mySearchText.getText());
+
+                int i = Integer.parseInt(myInput2);
+               
+                if (i >= 0){
+                    if (i < size){
+                        Builder builder = new Builder(MainActivity.this);
+                        builder.setTitle("You've selected");
+                        builder.setMessage(myArrayList.get(i));
+                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder.create();
+                        builder.show();
+                        mySearchText.setHint("Search Again");
+                        mySearchText.setText("");
+                    } else {
+                        Builder builder2 = new Builder(MainActivity.this);
+                        builder2.setTitle("Error");
+                        builder2.setMessage("this is not a valid search");
+                        builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        });
+                        builder2.create();
+                        builder2.show();
+                        mySearchText.setHint("Search Again");
+                        mySearchText.setText("");
+                    }
+
+                }
+
+
 
             }
         });
