@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">El dominio de los fundamentos</string>
+    <string name="addText">añadir entrada</string>
+    <string name="setHint">"buscar utilizando un número entre 0 y "</string>
+    <string name="search">Buscar</string>
+    <string name="startAList">Comience una lista</string>
+    <string name="enterAnother">Introduzca otro valor</string>
+    <string name="dupEntry">Esta entrada ya está en la lista</string>
+    <string name="wAvg">"Con un promedio de "</string>
+    <string name="charEntry">" Charecters en cada entrada"</string>
+    <string name="thereIs">"Ahi esta "</string>
+    <string name="itemsList">" artículo en su lista"</string>
+    <string name="thereAre">"Hay "</string>
+    <string name="selected">Haz seleccionado</string>
+    <string name="remove">Eliminar</string>
+    <string name="ok">OK</string>
+    <string name="searchAgain">Busca de nuevo</string>
+    <string name="error">Error</string>
+    <string name="notValid">esto no es una búsqueda válido</string>
+    <string name="StartList">Comience una lista</string>
+</resources>

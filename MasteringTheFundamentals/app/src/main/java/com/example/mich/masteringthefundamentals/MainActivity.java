@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -20,8 +19,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         // connecting my buttons
-        Button myButton = (Button) findViewById(R.id.button);
-        Button myButton2 = (Button) findViewById(R.id.button2);
+        //Button myButton = (Button) findViewById(R.id.button);
+        //Button myButton2 = (Button) findViewById(R.id.button2);
+
+        TextView clickText = (TextView) findViewById(R.id.textView2);
+        TextView clickText2 = (TextView) findViewById(R.id.textView3);
         // connecting my textFields
         final TextView myText = (TextView) findViewById(R.id.editText);
         final TextView mySearchText = (TextView) findViewById(R.id.editText2);
@@ -39,12 +41,14 @@ public class MainActivity extends AppCompatActivity {
         // help debugging
         final String LOG_Tag = "logcatExample";
 
+
+
         // setting up my onclick listener for my 1st button along with the rest of my code
-        myButton.setOnClickListener(new View.OnClickListener() {
+        clickText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String myTest = "Enter another Value";
+               String myTest = getString(R.string.enterAnother);
 
                 // gets data from the text entry
                 String myInput = String.valueOf(myText.getText());
@@ -66,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 if (myArrayList.contains(myInput)){
 
                     // if not unique sets text to this sting
-                    myDispaly.setText("This entry is already in the list");
+                    myDispaly.setText(R.string.dupEntry);
                 } else {
 
                     //adds to entry to the list
@@ -78,9 +82,9 @@ public class MainActivity extends AppCompatActivity {
 
                     //sets the hint for the search bar to the index of the list
                     if (Integer.toString(size).equals("1")){
-                        mySearchText.setHint("Search");
+                        mySearchText.setHint(R.string.search);
                     } else {
-                        mySearchText.setHint("search using a number between 0 and " + (size - 1));
+                        mySearchText.setHint(getString(R.string.setHint) + (size - 1));
                     }
 
                     // number of charecters in eack entry
@@ -105,21 +109,21 @@ public class MainActivity extends AppCompatActivity {
                         div = summed/size;
                         i++;
                         // sets the textView to the average charecters
-                        myAverage.setText(new StringBuilder().append("With an Average of ").append(Integer.toString(div)).append(" Charecters in each entry").toString());
+                        myAverage.setText(new StringBuilder().append(getString(R.string.wAvg)).append(Integer.toString(div)).append(getString(R.string.charEntry)).toString());
                     }
 
 
                     if (Integer.toString(size).equals("1")) {
-                        myCount.setText(new StringBuilder().append("There is ").append(Integer.toString(size)).append(" item in your list").toString());
+                        myCount.setText(new StringBuilder().append(getString(R.string.thereIs)).append(Integer.toString(size)).append(getString(R.string.itemsList)).toString());
                     } else {
-                        myCount.setText(new StringBuilder().append("There are ").append(Integer.toString(size)).append(" items in your list").toString());
+                        myCount.setText(new StringBuilder().append(getString(R.string.thereAre)).append(Integer.toString(size)).append(getString(R.string.itemsList)));
                     }
                 }
 
             }
         });
 
-        myButton2.setOnClickListener(new View.OnClickListener() {
+        clickText2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -127,16 +131,26 @@ public class MainActivity extends AppCompatActivity {
                 // number of entries
                 int size = myArrayList.size();
 
-                String myInput2 = String.valueOf(mySearchText.getText());
+                final String myInput2 = String.valueOf(mySearchText.getText());
 
-                int i = Integer.parseInt(myInput2);
-               
-                if (i >= 0){
-                    if (i < size){
+                final int i = Integer.parseInt(myInput2);
+
+                if (i >= 0) {
+                    if (i < size) {
                         Builder builder = new Builder(MainActivity.this);
-                        builder.setTitle("You've selected");
+                        builder.setTitle(R.string.selected);
                         builder.setMessage(myArrayList.get(i));
-                        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        builder.setIcon(R.mipmap.ic_launcher);
+                        builder.setNegativeButton(R.string.remove, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                myArrayList.remove(i);
+                                myDispaly.setText("Item was removed");
+                                myAverage.setText("");
+                                myCount.setText("");
+                            }
+                        });
+                        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -144,13 +158,14 @@ public class MainActivity extends AppCompatActivity {
                         });
                         builder.create();
                         builder.show();
-                        mySearchText.setHint("Search Again");
+                        mySearchText.setHint(R.string.searchAgain);
                         mySearchText.setText("");
                     } else {
                         Builder builder2 = new Builder(MainActivity.this);
-                        builder2.setTitle("Error");
-                        builder2.setMessage("this is not a valid search");
-                        builder2.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        builder2.setTitle(R.string.error);
+                        builder2.setMessage(R.string.notValid);
+                        builder2.setIcon(R.mipmap.ic_launcher);
+                        builder2.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
@@ -158,16 +173,18 @@ public class MainActivity extends AppCompatActivity {
                         });
                         builder2.create();
                         builder2.show();
-                        mySearchText.setHint("Search Again");
+                        mySearchText.setHint(R.string.searchAgain);
                         mySearchText.setText("");
                     }
 
                 }
 
 
-
             }
         });
 
     }
-}
+
+
+    }
+

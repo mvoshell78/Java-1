@@ -1,4 +1,23 @@
 <resources>
     <string name="app_name">Mastering The Fundamentals</string>
     <string name="button">Button</string>
+    <string name="addText">Add Entry</string>
+    <string name="setHint">"search using a number between 0 and "</string>
+    <string name="search">Search</string>
+    <string name="startAList">Start a list</string>
+    <string name="enterAnother">Enter another Value</string>
+    <string name="dupEntry">This entry is already in the list</string>
+    <string name="wAvg">"With an Average of "</string>
+    <string name="charEntry">" Charecters in each entry"</string>
+    <string name="thereIs">"There is "</string>
+    <string name="itemsList">" item in your list"</string>
+    <string name="thereAre">"There are "</string>
+    <string name="selected">You\'ve selected</string>
+    <string name="remove">Remove</string>
+    <string name="ok">OK</string>
+    <string name="searchAgain">Search Again</string>
+    <string name="error">Error</string>
+    <string name="notValid">this is not a valid search</string>
+    <string name="StartList">Start a list</string>
+
 </resources>
