@@ -18,4 +18,5 @@
     <string name="error">Error</string>
     <string name="notValid">esto no es una búsqueda válido</string>
     <string name="StartList">Comience una lista</string>
+    <string name="itemRemoved">El artículo fue eliminado</string>
 </resources>

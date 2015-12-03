@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 myArrayList.remove(i);
-                                myDispaly.setText("Item was removed");
+                                myDispaly.setText(R.string.itemRemoved);
                                 myAverage.setText("");
                                 myCount.setText("");
                             }

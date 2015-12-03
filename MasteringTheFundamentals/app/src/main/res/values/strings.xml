@@ -19,5 +19,6 @@
     <string name="error">Error</string>
     <string name="notValid">this is not a valid search</string>
     <string name="StartList">Start a list</string>
+    <string name="itemRemoved">Item was removed</string>
 
 </resources>
