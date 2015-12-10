@@ -10,25 +10,54 @@
     tools:context="com.example.mich.workingwithadvancedviews.MainActivity"
     android:id="@+id/textView">
 
+    <ListView
+        android:layout_width="250sp"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView"
+        android:clickable="true"
+        tools:listitem="@android:layout/simple_list_item_1"
+        android:layout_alignParentTop="true" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/testView"
-        android:textSize="30dp"
-        android:typeface="serif"
+        android:text=" "
+        android:id="@+id/WorkersName"
         android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true" />
+        android:layout_toEndOf="@+id/listView"
+        android:paddingTop="20dp"
+        android:paddingLeft="50dp"
+        android:textStyle="bold"
+        android:textSize="30dp" />
 
-    <ListView
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/listView"
-        android:layout_alignTop="@+id/testView"
-        android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/testView"
-        android:clickable="true"
-        tools:listitem="@android:layout/simple_list_item_1" />
+        android:id="@+id/jobRespon"
+        android:layout_below="@+id/WorkersName"
+        android:layout_alignStart="@+id/WorkersName"
+        android:paddingTop="20dp"
+        android:paddingLeft="50dp"
+        android:textSize="22dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/WorkersPhone"
+        android:layout_below="@+id/jobRespon"
+        android:layout_toEndOf="@+id/listView"
+        android:paddingTop="20dp"
+        android:paddingLeft="50dp"
+        android:textSize="22dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=" "
+        android:id="@+id/WorkersBio"
+        android:layout_below="@+id/WorkersPhone"
+        android:layout_alignStart="@+id/WorkersPhone"
+        android:paddingLeft="50dp"
+        android:paddingTop="20dp" />
 
 </RelativeLayout>

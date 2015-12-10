@@ -15,12 +15,18 @@
             android:layout_weight="1.0"
             android:textAppearance="?android:attr/textAppearanceMedium" />
 
-        <TextView android:id="@+id/employee_department"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+
     </LinearLayout>
 
+    <TextView android:id="@+id/employee_department"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
+    <TextView android:id="@+id/employee_phone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </LinearLayout>

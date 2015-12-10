@@ -8,21 +8,49 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.mich.workingwithadvancedviews.MainActivity"
-    android:id="@+id/portTextView">
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/portTestView"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="72dp" />
+    android:id="@+id/TextsView">
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/WorkersName"
+        android:layout_below="@+id/spinner"
+        android:layout_alignParentStart="true"
+        android:paddingTop="40dp"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/jobRespon"
+        android:layout_below="@+id/WorkersName"
+        android:layout_alignParentStart="true"
+        android:paddingTop="20dp"
+        android:textSize="22dp"
+        android:textIsSelectable="false" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/WorkersPhone"
+        android:layout_below="@+id/jobRespon"
+        android:layout_alignParentStart="true"
+        android:paddingTop="20dp"
+        android:textSize="22dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/WorkersBio"
+        android:layout_below="@+id/WorkersPhone"
+        android:paddingTop="20dp" />
+
 </RelativeLayout>
