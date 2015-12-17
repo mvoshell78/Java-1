@@ -20,6 +20,40 @@
         android:layout_height="wrap_content"
         android:text="New Text"
         android:id="@+id/textView2"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="66dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/street"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentStart="true"
+        android:hint="Street address" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/city"
+        android:layout_below="@+id/street"
+        android:layout_alignParentStart="true"
+        android:hint="City" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/state"
+        android:layout_below="@+id/city"
+        android:layout_alignParentStart="true"
+        android:hint="State" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="get geo"
+        android:id="@+id/getGeoButton"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentEnd="true" />
+
 </RelativeLayout>
