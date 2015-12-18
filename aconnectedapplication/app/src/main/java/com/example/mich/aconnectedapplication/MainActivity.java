@@ -13,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.apache.commons.io.IOUtils;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -102,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    public class backTask extends AsyncTask<String, Void, String> {
+    public class backTask extends AsyncTask<String, Void, JSONObject> {
 
         @Override
         protected void onPreExecute() {
@@ -111,12 +112,15 @@ public class MainActivity extends AppCompatActivity {
         }
 
         @Override
-        protected String doInBackground(String... params) {
+        protected JSONObject doInBackground(String... params) {
             // The URL string that points to our web resource.
             String city = cityInput;
             String state = stateInput;
             String address = addressFinal;
             String urlString = "http://www.yaddress.net/api/address?AddressLine1=" + address + "&AddressLine2=" + city + "+" + state;
+
+
+
 
             // Creating the URL object that points to our web resource.
             URL url = null;
@@ -156,32 +160,41 @@ public class MainActivity extends AppCompatActivity {
             try{
                 apiData = new JSONObject(resourceData);
 
+
             } catch(Exception e){
-                System.out.println("Cannot convert API resonce to JSON");
+                System.out.println("Cannot convert API resource to JSON");
                 apiData = null;
             }
-
+/*
             try{
-                apiData = (apiData!= null) ? apiData.getJSONObject("Number") : null;
+                apiData = (apiData!= null) ? apiData.getJSONObject("") : null;
+
             } catch (Exception e){
                 System.out.println("could not parse data");
                 apiData = null;
 
             }
-
+*/
 
             if (apiData != null) {
-                return apiData.toString();
+                return apiData;
             }else{
-                return "there was a problem";
+                return null;
             }
-
 
         }
 
         @Override
-        protected void onPostExecute(String s) {
-          myText2.setText(s);
+        protected void onPostExecute(JSONObject s) {
+            try {
+                String longitude = s.getString("Longitude");
+                String Latitude = s.getString("Latitude");
+                myText2.setText((CharSequence) Latitude);
+                myText.setText((CharSequence) longitude);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
         }
     }
 
