@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -26,12 +27,19 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView myText;
-    TextView myText2;
+    TextView latitude;
+    TextView longitude;
+    TextView latitudeLabel;
+    TextView longitudeLabel;
+    TextView addressDisplay;
+    TextView cityDisplay;
+    TextView stateDisplay;
+
     EditText address;
     EditText city;
     EditText state;
     Button getGeo;
+    ProgressBar pb;
 
     String cityInput;
     String stateInput;
@@ -44,13 +52,24 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        myText = (TextView) findViewById(R.id.textView);
+        latitude = (TextView) findViewById(R.id.latResult);
+        longitude = (TextView) findViewById(R.id.lonResult);
+        latitudeLabel = (TextView) findViewById(R.id.laitude);
+        latitudeLabel.setVisibility(View.INVISIBLE);
+        longitudeLabel = (TextView) findViewById(R.id.longitude);
+        longitudeLabel.setVisibility(View.INVISIBLE);
 
-        myText2 = (TextView) findViewById(R.id.textView2);
+        addressDisplay = (TextView) findViewById(R.id.displayAddress);
+        cityDisplay = (TextView) findViewById(R.id.displayCity);
+        stateDisplay = (TextView) findViewById(R.id.displayState);
+
         address = (EditText) findViewById(R.id.street);
         city = (EditText) findViewById(R.id.city);
         state = (EditText) findViewById(R.id.state);
         getGeo = (Button) findViewById(R.id.getGeoButton);
+
+        pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb.setVisibility(View.INVISIBLE);
 
         getGeo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +77,11 @@ public class MainActivity extends AppCompatActivity {
                 addressInput = String.valueOf(address.getText());
                 cityInput = String.valueOf(city.getText());
                 stateInput = String.valueOf(state.getText());
+
+                address.setText("");
+                city.setText("");
+                state.setText("");
+
                 if (isOnline()) {
                     backTask task = new backTask();
                     task.execute();
@@ -97,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             //Toast.makeText(this, "We're Connected", Toast.LENGTH_LONG).show();
             return true;
         } else{
-            Toast.makeText(this,"We're  not Connected", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"No internet connection", Toast.LENGTH_LONG).show();
             return false;
         }
     }
@@ -107,8 +131,8 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
+            pb.setVisibility(View.VISIBLE);
 
-            myText.setText("i'm pre");
         }
 
         @Override
@@ -165,18 +189,15 @@ public class MainActivity extends AppCompatActivity {
                 System.out.println("Cannot convert API resource to JSON");
                 apiData = null;
             }
-/*
-            try{
-                apiData = (apiData!= null) ? apiData.getJSONObject("") : null;
 
-            } catch (Exception e){
-                System.out.println("could not parse data");
-                apiData = null;
-
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
-*/
 
             if (apiData != null) {
+
                 return apiData;
             }else{
                 return null;
@@ -187,10 +208,35 @@ public class MainActivity extends AppCompatActivity {
         @Override
         protected void onPostExecute(JSONObject s) {
             try {
+                pb.setVisibility(View.INVISIBLE);
                 String longitude = s.getString("Longitude");
                 String Latitude = s.getString("Latitude");
-                myText2.setText((CharSequence) Latitude);
-                myText.setText((CharSequence) longitude);
+                String address = s.getString("AddressLine1");
+                String city = s.getString("City");
+                String state = s.getString("State");
+
+                longitudeLabel.setVisibility(View.VISIBLE);
+                latitudeLabel.setVisibility(View.VISIBLE);
+                MainActivity.this.longitude.setText((CharSequence) longitude);
+                latitude.setText((CharSequence) Latitude );
+                if (address != null){
+                    addressDisplay.setText((CharSequence)address);
+                }else {
+                    addressDisplay.setText("");
+                }
+                if (city != null){
+                    cityDisplay.setText((CharSequence)city);
+                }else {
+                    cityDisplay.setText("");
+                }
+                if (state != null){
+                    stateDisplay.setText((CharSequence)state);
+                }else {
+                    stateDisplay.setText("");
+                }
+
+
+
             } catch (JSONException e) {
                 e.printStackTrace();
             }

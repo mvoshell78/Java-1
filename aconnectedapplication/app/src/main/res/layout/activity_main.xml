@@ -12,23 +12,24 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:id="@+id/textView" />
+        android:text="Enter an address"
+        android:id="@+id/enterAddress"
+        android:paddingBottom="25dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/textView2"
-        android:layout_alignParentBottom="true"
+        android:id="@+id/lonResult"
+        android:layout_alignParentBottom="false"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="66dp" />
+        android:layout_below="@+id/longitude"
+        android:paddingTop="10dp" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/street"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/enterAddress"
         android:layout_alignParentStart="true"
         android:hint="Street address" />
 
@@ -53,7 +54,75 @@
         android:layout_height="wrap_content"
         android:text="get geo"
         android:id="@+id/getGeoButton"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/enterAddress"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Longitude"
+        android:id="@+id/longitude"
+        android:layout_alignEnd="@+id/getGeoButton"
+        android:layout_alignParentStart="true"
+        android:paddingTop="25dp"
+        android:layout_below="@+id/displayAddress"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Latitude"
+        android:id="@+id/laitude"
+        android:layout_below="@+id/lonResult"
+        android:paddingTop="10dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/longitude"
+        android:textAlignment="center" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/latResult"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/laitude"
+        android:layout_alignEnd="@+id/laitude"
+        android:paddingTop="10dp"
+        android:textAlignment="center" />
+
+    <ProgressBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/progressBar"
+        android:layout_centerInParent="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/displayAddress"
+        android:paddingTop="25dp"
+        android:layout_below="@+id/state"
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/displayCity"
+        android:layout_below="@+id/state"
+        android:layout_toRightOf="@+id/displayAddress"
+        android:paddingTop="25dp"
+        android:paddingLeft="10dp"
+        android:textSize="25dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/displayState"
+        android:paddingLeft="10dp"
+        android:paddingTop="25dp"
+        android:layout_below="@+id/state"
+        android:layout_toRightOf="@+id/displayCity"
+        android:textSize="25dp" />
 
 </RelativeLayout>
